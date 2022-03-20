@@ -62,3 +62,47 @@ f_linha_n=(12-10)/(30-34);
 s_completa = spline(xx,[f_linha_0 yy f_linha_n]);
 
 s.completa.coefs
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2x1 − x2 − e−x1 = 0
+% −x1 + 2x2 − e−x2 = 0
+x0=[-1 ; -1]; % estimativas iniciais para x(1) e x(2)
+options=optimset(’Display’,’iter’); % mostra a solu ̧c~ao em cada it.
+[x,fval,exitflag,output]=fsolve(@fun1,x0,options) % resolve
+%funcao
+function F=fun1(x)
+F(1)=2*x(1)-x(2)-exp(-x(1));
+F(2)=-x(1)+2*x(2)-exp(-x(2));
+end
+%%%%%%%%%%%%%%%%%%%%%
+
+%  ---->  spline cúbica completa <----------
+% OMITIR SEMPRE 2º E PENULTIMO PONTOS
+%tempo        0 2 3 4 5
+%temperatura  0 20 35 60 110
+%1º Calcular f ′0 = (0 − 20)./(0 − 2) = 10
+%2º Calcular f ′n = (60 − 110)./(4 − 5) = 0.3333
+
+xx = [0,3,5];
+yy = [0,35,110];
+s_completa = spline(xx, [10 yy 0.3333])
+s_completa.coefs
+% para t = 4.2s
+temp = spline(xx, [10 yy 0.3333], 4.2)
+% Solucao: temp = 71.9525s
+
+
+%% CALCULAR RAIZES POLINOMIOS %%%%
+%P (x) = x5 + 3x3 + 2x + 4 = 0
+
+%Resolucao
+c = [1 0 3 0 2 4];
+r = roots(c)
+
+%% Calcular zero de uma funcao num intervalo .>SOLUCAO TEM QUE EXISTIR
+[x,fval,exitflag,output] = fzero('2.*cos(x)-2',[2.*pi,3.*pi])
+
+
+
+
+
