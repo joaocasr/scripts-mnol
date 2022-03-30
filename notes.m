@@ -111,7 +111,7 @@ r = roots(c)
 [x,fval,exitflag,output] = fzero('2.*cos(x)-2',[2.*pi,3.*pi])
 
 %----------------------------------------------------------------------------------------------%
-%% MODELO POLINOMIAL- GRAU2 (quadrático), usando a técnica dos mínimos quadrados %%
+% MODELO POLINOMIAL- GRAU2 (quadrático), usando a técnica dos mínimos quadrados 
 % P2 ->polinomio de 2º grau SQR->soma quadrado dos restos
 
 x = [0 1.25 2.5 3.75]
@@ -124,7 +124,7 @@ novo_f = polyval(P2,novo_x);
 plot(x,f,'o',novo_x,novo_f,'r')
 
 %----------------------------------------------------------------------------------------------%
-%% MODELO POLINOMIAL(grau 1) + MODELO NÃO POLINOMIAL - mínimos quadrados
+% MODELO POLINOMIAL(grau 1) + MODELO NÃO POLINOMIAL - mínimos quadrados
 % modelo do exercicio M (x, c1, c2) = c1/x + c2x
 % P1 e P2 são as funcoes aproximadas da funcao f
 
@@ -161,9 +161,22 @@ x=[1 3 6 10 12];
 function f = functione(c,x)
 f = c(1).*x + c(2).*sin(x);
 end
+%----------------------------------------------------------------------------------------------%
+%tabela de pontos -> trapz
 
+f=[0 0.1 0.2 0.3 0.4 0.5 0.6 0.65 0.6 0.6 0.7 0.8]
+x=[0 0.1 0.2 0.3 0.4 0.5 0.6 3.6 6.6 9.6 9.8 10]
 
+trapz(x,f)
 
+%funcao integrada -> integral
+
+integral(@funcao,0,1,'AbsTol',0.005)%abstol=tolerancia do erro absoluto
+% valor sup 1 valor inf 0 erro truncatura 0.005
+
+function f = funcao(x)
+f = x.^2 + 1./(x+1);
+end
 
 
 
