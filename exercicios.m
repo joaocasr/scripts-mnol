@@ -60,8 +60,6 @@ end
 
 %--------------------------------------------------------------
 
-
-
 % EX17(METODO DA SECANTE)
 
 x1= 40;
@@ -208,5 +206,70 @@ F(1)=-x(2)+2.*x(1)^2-4;
 F(2)=-x(2)-x(2)^3-x(1)-8;
 end
 
+%--------------------------------------------------------------
+
+% EX33(spline cúbica natural)
+
+
+%---->spline cúbica natural<----------
+% xi    −1  0  4  5
+% f(xi) 0.4375  0  2  1.5625
+
+xx = [-1,0,4,5];
+yy = [0.4375,0,2,1.5625];
+s = spline(xx,yy,2)
+
+%--------------------------------------------------------------
+
+% EX34(spline cúbica natural)
+
+%---->spline cúbica natural<----------
+% xi 1.5 2.0 2.2 3.0 3.8 4.0
+% f(xi) 4.9 3.3 3.0 2.0 1.75 1.5
+
+xx = [1.5, 2.0, 2.2, 3.0, 3.8, 4.0];
+yy = [4.9, 3.3, 3.0, 2.0, 1.75, 1.5];
+temp = spline(xx,yy,1.75)
+
+
+%--------------------------------------------------------------
+
+% EX35(spline cúbica completa)
+
+
+%---->spline cúbica completa<----------
+% OMITIR SEMPRE 2º E PENULTIMO PONTOS
+%vel (Km/h)        15 20 25 30 40 50
+%distância (m)     16 20 34 40 60 90
+
+xx = [15,25,30,50];
+yy = [16,34,40,90];
+f0 = (16-20)./(15-20);
+fn = (60-90)./(40-50);
+s_completa = spline(xx, [f0 yy fn])
+s_completa.coefs
+% para v = 45kmh
+dist = spline(xx, [f0 yy fn], 45)
+
+%{ Verificar os coeficientes de cada segmento da spline 
+xx = [1.5, 2.0, 2.2, 3.0, 3.8, 4.0];
+yy = [4.9, 3.3, 3.0, 2.0, 1.75, 1.5];
+s = spline(xx,yy)
+s.coefs
+%}
+
+
+%--------------------------------------------------------------
+
+% EX54(spline cúbica completa)
+
+x = [0 1.25 2.5 3.75]
+f = [0.260 0.208 0.172 0.145]
+[P2,S2] = polyfit(x,f,2)
+SQR = S2.normr^2
+
+novo_x = 0:0.01:3.75;
+novo_f = polyval(P2,novo_x);
+plot(x,f,'o',novo_x,novo_f,'r')
 
 
