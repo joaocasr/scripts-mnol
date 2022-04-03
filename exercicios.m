@@ -299,3 +299,23 @@ f = c(1).*x + c(2).*sin(x);
 end
 
 
+%--------------------------------------------------------------
+
+% EX40(c/tabela de pontos -> trapz)
+
+f=[0 0.1 0.2 0.3 0.4 0.5 0.6 0.65 0.6 0.6 0.7 0.8]
+x=[0 0.1 0.2 0.3 0.4 0.5 0.6 3.6 6.6 9.6 9.8 10]
+
+trapz(x,f)
+
+
+%--------------------------------------------------------------
+
+% EX45(c/ funcao integrada -> integral)
+
+integral(@funcao,0,1,'AbsTol',0.005)%abstol=tolerancia do erro absoluto
+% valor sup 1 valor inf 0 erro truncatura 0.005
+
+function f = funcao(x)
+f = x.^2 + 1./(x+1);
+end
