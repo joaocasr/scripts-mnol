@@ -1,4 +1,11 @@
+
 %%% FMINSEARCH
+
+%%ex3
+[x,fval,exitflag,output] = fminsearch(@funcao,5)
+function [f] = funcao(x)
+    f = max(-x.*(60-2.*x).^2);
+end
 
 
 op = optimset('MaxIter',4);
